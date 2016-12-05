@@ -8,14 +8,21 @@ var cursors = ["url('img/cursor/spider.cur'), pointer", "url('img/cursor/flower.
 var initTime; // to store the initial time for every trial
 
 $(document).ready(function () {
-    function stopTracking() {
-        $('#toBeTracked').css('cursor', 'auto');
-        $("#left").unbind("mouseenter");
+
+    function stopTracking(event) {
+        if(event.target.id == 'left')
+            console.log("left pic selected");
+        else
+            console.log("right pic selected");
+        $('#toBeTracked').css('cursor', 'auto');        // change the cursor to default
+        $("#left").unbind("mouseenter");                // unbind the mouseenter event from
         $("#right").unbind("mouseenter");
         $('#toBeTracked').unbind("mousemove");
+        if (completeList.length <= 0)
+            $('#startTrial').text('End of Trials!');
         setTimeout(function () {
             enableTrialButton();
-        }, 2000);
+        }, 500);
     };
 
     var displayStimuli = function () {
@@ -51,7 +58,6 @@ $(document).ready(function () {
             eventDoc = (event.target && event.target.ownerDocument) || document;
             doc = eventDoc.documentElement;
             body = eventDoc.body;
-
             event.pageX = event.clientX +
                 (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
                 (doc && doc.clientLeft || body && body.clientLeft || 0);
