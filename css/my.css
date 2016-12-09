@@ -4,3 +4,15 @@
     background-color: black;
     position: absolute;
 }
+
+.success.button {
+    cursor: inherit;
+}
+
+.panel {
+    height: 100vh;
+}
+
+#toBeTracked .nimstim {
+    min-height: 270px;
+}
